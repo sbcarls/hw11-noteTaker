@@ -28,7 +28,7 @@ module.exports = function(app) {
             }else{
                 notesArray = JSON.parse(data);
                 notesArray.push(newNote);
-                const newObj = JSON.stringify(arrayNotes);
+                const newObj = JSON.stringify(notesArray);
                 fs.writeFile(dbPath, newObj, err => err ? console.log(err) : console.log("Notes Saved"));
             }            
         })
@@ -44,7 +44,7 @@ module.exports = function(app) {
             }
             else {
                 arrayNotes = JSON.parse(data);
-                const updatedNotes = arrayNotes.filter(notes => notes.id !== id);
+                const updatedNotes = notesArray.filter(notes => notes.id !== id);
                 const updatedNotesObj = JSON.stringify(updatedNotes);
                 // Write db.json file with the stringify updateNotes.
                 fs.writeFile(dbPath, updatedNotes, function() {
